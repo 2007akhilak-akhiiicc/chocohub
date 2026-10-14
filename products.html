@@ -1,0 +1,585 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ChocoHub 🍫 | Homemade Chocolate Factory</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #fff8f0;
+    color: #48251c;
+}
+
+/* Navigation */
+header {
+    background: #381b14;
+    color: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffcc82;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+}
+
+nav a:hover {
+    color: #ffcc82;
+}
+
+/* Cute Hero */
+.hero {
+    min-height: 520px;
+    padding: 65px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 35px;
+    background: linear-gradient(135deg, #4a2118, #8b4932, #c17c55);
+    color: white;
+}
+
+.hero-content {
+    max-width: 570px;
+}
+
+.small-title {
+    color: #ffdb9e;
+    letter-spacing: 3px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 5vw, 65px);
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #ffd18c;
+}
+
+.hero p {
+    line-height: 1.8;
+    margin-bottom: 28px;
+    color: #ffede1;
+    font-size: 17px;
+}
+
+.btn {
+    display: inline-block;
+    background: #ffcf8c;
+    color: #48251c;
+    padding: 14px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: white;
+    transform: translateY(-3px);
+}
+
+.hero-art {
+    font-size: clamp(100px, 17vw, 190px);
+    text-align: center;
+    min-width: 220px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Sections */
+section {
+    padding: 65px 7%;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 36px;
+    margin-bottom: 12px;
+    color: #5a2a1c;
+}
+
+.subtitle {
+    color: #987464;
+    margin-bottom: 35px;
+    line-height: 1.7;
+}
+
+/* Cute product cards */
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.card {
+    background: white;
+    padding: 18px;
+    border-radius: 24px;
+    box-shadow: 0 8px 24px #61321b15;
+    border: 1px solid #f4e1d2;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px) rotate(-1deg);
+    box-shadow: 0 15px 30px #61321b25;
+}
+
+.heart {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 22px;
+}
+
+.product-picture {
+    background: #fff0df;
+    border-radius: 20px;
+    padding: 18px 5px;
+    margin-bottom: 15px;
+}
+
+.product-picture .emoji {
+    font-size: 76px;
+    display: block;
+    transition: 0.3s;
+}
+
+.card:hover .emoji {
+    transform: scale(1.12) rotate(5deg);
+}
+
+.card h3 {
+    margin: 12px 0 8px;
+    color: #572b1d;
+    font-size: 19px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #917365;
+    line-height: 1.6;
+    min-height: 44px;
+}
+
+.price {
+    font-size: 23px;
+    color: #a34e2d;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.price small {
+    font-size: 12px;
+    font-weight: normal;
+    color: #927366;
+}
+
+.cart-btn {
+    width: 100%;
+    padding: 12px;
+    background: #603222;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.cart-btn:hover {
+    background: #b76a45;
+}
+
+/* Cute offer banner */
+.offer {
+    margin: 0 7% 60px;
+    padding: 35px 20px;
+    border-radius: 25px;
+    background: #f5d9b9;
+    color: #542719;
+}
+
+.offer h2 {
+    margin-bottom: 12px;
+    font-size: 29px;
+}
+
+.offer p {
+    line-height: 1.8;
+}
+
+/* About */
+.about {
+    background: #f4e4d2;
+}
+
+.about p {
+    max-width: 750px;
+    margin: 20px auto;
+    line-height: 1.9;
+    color: #785442;
+}
+
+/* Cart summary */
+.cart-summary {
+    display: inline-block;
+    background: #fff0df;
+    padding: 12px 20px;
+    border-radius: 30px;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+/* Contact */
+.contact {
+    background: #381b14;
+    color: white;
+}
+
+.contact .section-title {
+    color: #ffcf8c;
+}
+
+.contact p {
+    line-height: 1.9;
+    margin: 18px 0 25px;
+    color: #f0d8c7;
+}
+
+footer {
+    text-align: center;
+    padding: 24px;
+    background: #21100c;
+    color: #d7bca9;
+    font-size: 14px;
+    line-height: 2;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+    .products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hero-art {
+        min-width: 140px;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 55px 6%;
+    }
+
+    .hero-art {
+        min-width: auto;
+        font-size: 125px;
+    }
+
+    section {
+        padding: 50px 5%;
+    }
+
+    .section-title {
+        font-size: 29px;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+        margin: auto;
+    }
+
+    .offer {
+        margin: 0 5% 45px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<header>
+    <div class="logo">🍫 ChocoHub</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#products">Chocolates</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#products">🛍️ Shop</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="small-title">♡ MADE WITH LOVE ♡</div>
+
+        <h1>
+            A Little Box of
+            <span>Happiness!</span> 🍫
+        </h1>
+
+        <p>
+            Welcome to ChocoHub, your cute little chocolate paradise!
+            Discover delicious homemade chocolates, sweet treats,
+            and handmade gifts created to make every moment special.
+        </p>
+
+        <a href="#products" class="btn">Explore Our Treats ♡</a>
+    </div>
+
+    <div class="hero-art" aria-label="Chocolate bar emoji">
+        🍫
+        <div style="font-size:45px;">🍓 🍬 💗</div>
+    </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+    <h2 class="section-title">Our Choco Cuties 🍓</h2>
+
+    <p class="subtitle">
+        Handmade with love, wrapped in sweetness! ♡<br>
+        Prices shown are sample prices per pack.
+    </p>
+
+    <div class="cart-summary">
+        🛍️ Cart: <span id="cart-count">0</span> items
+        &nbsp; | &nbsp; Total: ₹<span id="cart-total">0</span>
+    </div>
+
+    <div class="products">
+
+        <div class="card">
+            <span class="heart">💗</span>
+            <div class="product-picture">
+                <span class="emoji">🍫</span>
+            </div>
+            <h3>Choco Classic</h3>
+            <p>Our signature creamy homemade chocolate.</p>
+            <div class="price">₹99 <small>/ pack</small></div>
+            <button class="cart-btn" onclick="addToCart(99)">
+                Add to Cart ♡
+            </button>
+        </div>
+
+        <div class="card">
+            <span class="heart">💖</span>
+            <div class="product-picture" style="background:#ffe5e8;">
+                <span class="emoji">🍓</span>
+            </div>
+            <h3>Strawberry Choco</h3>
+            <p>A sweet strawberry-inspired chocolate treat.</p>
+            <div class="price">₹129 <small>/ pack</small></div>
+            <button class="cart-btn" onclick="addToCart(129)">
+                Add to Cart ♡
+            </button>
+        </div>
+
+        <div class="card">
+            <span class="heart">🤎</span>
+            <div class="product-picture" style="background:#f1dfd0;">
+                <span class="emoji">🍪</span>
+            </div>
+            <h3>Choco Crunch</h3>
+            <p>Chocolatey crunch with cookie-inspired goodness.</p>
+            <div class="price">₹149 <small>/ pack</small></div>
+            <button class="cart-btn" onclick="addToCart(149)">
+                Add to Cart ♡
+            </button>
+        </div>
+
+        <div class="card">
+            <span class="heart">🎀</span>
+            <div class="product-picture" style="background:#f8e2d3;">
+                <span class="emoji">🎁</span>
+            </div>
+            <h3>Choco Gift Box</h3>
+            <p>A lovely chocolate surprise for someone special.</p>
+            <div class="price">₹299 <small>/ box</small></div>
+            <button class="cart-btn" onclick="addToCart(299)">
+                Add to Cart ♡
+            </button>
+        </div>
+
+        <div class="card">
+            <span class="heart">🤎</span>
+            <div class="product-picture" style="background:#e9d5c4;">
+                <span class="emoji">🌰</span>
+            </div>
+            <h3>Nutty Choco</h3>
+            <p>A delicious chocolate treat with nutty flavour.</p>
+            <div class="price">₹179 <small>/ pack</small></div>
+            <button class="cart-btn" onclick="addToCart(179)">
+                Add to Cart ♡
+            </button>
+        </div>
+
+        <div class="card">
+            <span class="heart">💝</span>
+            <div class="product-picture" style="background:#f7e3b9;">
+                <span class="emoji">🍬</span>
+            </div>
+            <h3>Choco Bites</h3>
+            <p>Small, cute chocolate bites for happy moments.</p>
+            <div class="price">₹79 <small>/ pack</small></div>
+            <button class="cart-btn" onclick="addToCart(79)">
+                Add to Cart ♡
+            </button>
+        </div>
+
+        <div class="card">
+            <span class="heart">🍫</span>
+            <div class="product-picture" style="background:#e8d2c5;">
+                <span class="emoji">🍩</span>
+            </div>
+            <h3>Choco Treats</h3>
+            <p>A fun chocolate-inspired treat for sweet lovers.</p>
+            <div class="price">₹119 <small>/ pack</small></div>
+            <button class="cart-btn" onclick="addToCart(119)">
+                Add to Cart ♡
+            </button>
+        </div>
+
+        <div class="card">
+            <span class="heart">💞</span>
+            <div class="product-picture" style="background:#fbe3ed;">
+                <span class="emoji">💝</span>
+            </div>
+            <h3>Love Box</h3>
+            <p>A heartwarming chocolate gift made for sharing.</p>
+            <div class="price">₹249 <small>/ box</small></div>
+            <button class="cart-btn" onclick="addToCart(249)">
+                Add to Cart ♡
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- SPECIAL OFFER -->
+<div class="offer">
+    <h2>🎀 Sweetness in Every Bite! 🍫</h2>
+    <p>
+        A little chocolate, a lot of happiness!<br>
+        Find your favourite treats and share the sweetness.
+    </p>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <h2 class="section-title">Our Sweet Little Story 💗</h2>
+
+    <p>
+        ChocoHub is a homemade chocolate brand built around
+        creativity, sweetness and the joy of sharing.
+        We love creating delightful chocolate treats for birthdays,
+        celebrations, gifts and everyday happy moments.
+    </p>
+
+    <p>
+        Every chocolate deserves a little love.
+        Thank you for being part of our sweet journey! 🍫
+    </p>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <h2 class="section-title">Let's Make Life Sweeter! 🍓</h2>
+
+    <p>
+        Have a question or want chocolates for a special occasion?<br>
+        We'd love to hear from you!
+    </p>
+
+    <a href="mailto:yourmail@example.com" class="btn">
+        Contact ChocoHub 💌
+    </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>🍫 ChocoHub Homemade Chocolate Factory</p>
+    <p>Made with love, cocoa and a little bit of magic ♡</p>
+    <p>© 2026 ChocoHub. All rights reserved.</p>
+</footer>
+
+<!-- SIMPLE CART -->
+<script>
+let cartCount = 0;
+let cartTotal = 0;
+
+function addToCart(price) {
+    cartCount++;
+    cartTotal += price;
+
+    document.getElementById("cart-count").textContent = cartCount;
+    document.getElementById("cart-total").textContent = cartTotal;
+
+    alert("🍫 Yay! Chocolate added to your cart! 💗");
+}
+</script>
+
+</body>
+</html>
